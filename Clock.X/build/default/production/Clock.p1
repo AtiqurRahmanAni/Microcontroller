@@ -699,11 +699,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Clock.c: 71:         Update_Current_Date_Time();
 [e ( _Update_Current_Date_Time ..  ]
 "72
-[; ;Clock.c: 72:         sec1=sec%10;
-[e = _sec1 % _sec -> 10 `i ]
+[; ;Clock.c: 72:         sec1=min%10;
+[e = _sec1 % _min -> 10 `i ]
 "73
-[; ;Clock.c: 73:         sec2=sec/10;
-[e = _sec2 / _sec -> 10 `i ]
+[; ;Clock.c: 73:         sec2=min/10;
+[e = _sec2 / _min -> 10 `i ]
 "74
 [; ;Clock.c: 74:         PORTD=seg[sec1];
 [e = _PORTD -> *U + &U _seg * -> -> _sec1 `ui `ux -> -> # *U &U _seg `ui `ux `uc ]

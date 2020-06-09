@@ -1882,8 +1882,8 @@ int main()
     while (1)
     {
         Update_Current_Date_Time();
-        sec1=sec%10;
-        sec2=sec/10;
+        sec1=min%10;
+        sec2=min/10;
         PORTD=seg[sec1];
         RC5=0;
         RC6=1;
