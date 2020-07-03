@@ -3,13 +3,13 @@
 [d edition pro ]
 [d chip 16F877A ]
 [d frameptr 0 ]
-"16 E:\Microcontroller\Clock.X/PIC16F877a_DS3231.h
+"16 E:\Github\Microcontroller\Clock.X/PIC16F877a_DS3231.h
 [v _BCD_2_DEC BCD_2_DEC `(i  1 e 2 0 ]
 "21
 [v _DEC_2_BCD DEC_2_BCD `(i  1 e 2 0 ]
 "41
 [v _Update_Current_Date_Time Update_Current_Date_Time `(v  1 e 1 0 ]
-"10 E:\Microcontroller\Clock.X/PIC16F877a_I2C.h
+"10 E:\Github\Microcontroller\Clock.X/PIC16F877a_I2C.h
 [v _I2C_Initialize I2C_Initialize `(v  1 e 1 0 ]
 "21
 [v _I2C_Hold I2C_Hold `(v  1 e 1 0 ]
@@ -21,7 +21,7 @@
 [v _I2C_Write I2C_Write `(v  1 e 1 0 ]
 "46
 [v _I2C_Read I2C_Read `(us  1 e 2 0 ]
-"58 E:\Microcontroller\Clock.X\Clock.c
+"58 E:\Github\Microcontroller\Clock.X\Clock.c
 [v _main main `(i  1 e 2 0 ]
 "5 E:\Applications\Microchip\xc8\v2.10\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -41,7 +41,7 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"36 E:\Microcontroller\Clock.X\Clock.c
+"36 E:\Github\Microcontroller\Clock.X\Clock.c
 [v _sec sec `i  1 e 2 0 ]
 "37
 [v _min min `i  1 e 2 0 ]
@@ -116,7 +116,7 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "2971
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"58 E:\Microcontroller\Clock.X\Clock.c
+"58 E:\Github\Microcontroller\Clock.X\Clock.c
 [v _main main `(i  1 e 2 0 ]
 {
 "236
@@ -145,12 +145,12 @@
 [v ___awdiv@dividend dividend `i  1 p 2 2 ]
 "41
 } 0
-"41 E:\Microcontroller\Clock.X/PIC16F877a_DS3231.h
+"41 E:\Github\Microcontroller\Clock.X/PIC16F877a_DS3231.h
 [v _Update_Current_Date_Time Update_Current_Date_Time `(v  1 e 1 0 ]
 {
 "67
 } 0
-"40 E:\Microcontroller\Clock.X/PIC16F877a_I2C.h
+"40 E:\Github\Microcontroller\Clock.X/PIC16F877a_I2C.h
 [v _I2C_Write I2C_Write `(v  1 e 1 0 ]
 {
 [v I2C_Write@data data `ui  1 p 2 0 ]
@@ -180,7 +180,7 @@
 {
 "24
 } 0
-"16 E:\Microcontroller\Clock.X/PIC16F877a_DS3231.h
+"16 E:\Github\Microcontroller\Clock.X/PIC16F877a_DS3231.h
 [v _BCD_2_DEC BCD_2_DEC `(i  1 e 2 0 ]
 {
 [v BCD_2_DEC@to_convert to_convert `i  1 p 2 6 ]
@@ -196,7 +196,7 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
-"10 E:\Microcontroller\Clock.X/PIC16F877a_I2C.h
+"10 E:\Github\Microcontroller\Clock.X/PIC16F877a_I2C.h
 [v _I2C_Initialize I2C_Initialize `(v  1 e 1 0 ]
 {
 [v I2C_Initialize@feq_K feq_K `DCul  1 p 4 13 ]

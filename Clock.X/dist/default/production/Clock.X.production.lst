@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Tue Jun 09 20:15:55 2020
+                                                                                               Tue Jun 09 20:38:33 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F877A
@@ -633,16 +633,16 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    619  06A4  120A  118A  259B  120A  118A  	fcall	_Update_Current_Date_Time
    620  06A9                     l1404:	
    621                           
-   622                           ;Clock.c: 72:         sec1=sec%10;
+   622                           ;Clock.c: 72:         sec1=min%10;
    623  06A9  300A               	movlw	10
    624  06AA  00F0               	movwf	___awmod@divisor
    625  06AB  3000               	movlw	0
    626  06AC  00F1               	movwf	___awmod@divisor+1
    627  06AD  1283               	bcf	3,5	;RP0=0, select bank0
    628  06AE  1303               	bcf	3,6	;RP1=0, select bank0
-   629  06AF  083F               	movf	_sec+1,w
+   629  06AF  083D               	movf	_min+1,w
    630  06B0  00F3               	movwf	___awmod@dividend+1
-   631  06B1  083E               	movf	_sec,w
+   631  06B1  083C               	movf	_min,w
    632  06B2  00F2               	movwf	___awmod@dividend
    633  06B3  120A  118A  2473  120A  118A  	fcall	___awmod
    634  06B8  0871               	movf	?___awmod+1,w
@@ -653,14 +653,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    639  06BD  00D9               	movwf	_sec1
    640  06BE                     l1406:	
    641                           
-   642                           ;Clock.c: 73:         sec2=sec/10;
+   642                           ;Clock.c: 73:         sec2=min/10;
    643  06BE  300A               	movlw	10
    644  06BF  00F0               	movwf	___awdiv@divisor
    645  06C0  3000               	movlw	0
    646  06C1  00F1               	movwf	___awdiv@divisor+1
-   647  06C2  083F               	movf	_sec+1,w
+   647  06C2  083D               	movf	_min+1,w
    648  06C3  00F3               	movwf	___awdiv@dividend+1
-   649  06C4  083E               	movf	_sec,w
+   649  06C4  083C               	movf	_min,w
    650  06C5  00F2               	movwf	___awdiv@dividend
    651  06C6  120A  118A  24CC  120A  118A  	fcall	___awdiv
    652  06CB  0871               	movf	?___awdiv+1,w
@@ -2855,7 +2855,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Tue Jun 09 20:15:55 2020
+Symbol Table                                                                                   Tue Jun 09 20:38:33 2020
 
                __size_of_I2C_Begin 0009                                  pc 0002  
                       __CFG_CP$OFF 0000                 __size_of_I2C_Write 000A  
