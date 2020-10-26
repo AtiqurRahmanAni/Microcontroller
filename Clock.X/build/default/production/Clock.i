@@ -21,14 +21,16 @@
 #pragma config CPD = OFF
 #pragma config WRT = OFF
 #pragma config CP = OFF
-# 36 "Clock.c"
+# 24 "Clock.c"
 int sec = 05;
 int min = 55;
 int hour = 10;
 int date = 06;
 int month = 05;
 int year = 18;
-int sec1,sec2;
+
+int s1,s2,m1,m2,h1,h2,dly=2;;
+
 unsigned int seg[]={0X3F,
                     0X06,
                     0X5B,
@@ -1754,7 +1756,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "E:\\Applications\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 54 "Clock.c" 2
+# 44 "Clock.c" 2
 
 # 1 "./PIC16F877a_I2C.h" 1
 # 10 "./PIC16F877a_I2C.h"
@@ -1809,7 +1811,7 @@ unsigned short I2C_Read(unsigned short ack)
 
   return incoming;
 }
-# 55 "Clock.c" 2
+# 45 "Clock.c" 2
 
 # 1 "./PIC16F877a_DS3231.h" 1
 # 16 "./PIC16F877a_DS3231.h"
@@ -1865,15 +1867,12 @@ void Update_Current_Date_Time()
     I2C_End();
 
 }
-# 56 "Clock.c" 2
+# 46 "Clock.c" 2
 
 
 int main()
 {
-    TRISA=0x00;
-    PORTA=0x00;
-    TRISC=0x00;
-    PORTC=0x00;
+
     TRISB=0x00;
     PORTB=0x00;
     TRISD=0x00;
@@ -1882,168 +1881,94 @@ int main()
     while (1)
     {
         Update_Current_Date_Time();
-        sec1=min%10;
-        sec2=min/10;
-        PORTD=seg[sec1];
-        RC5=0;
-        RC6=1;
-        _delay((unsigned long)((5)*(16000000/4000.0)));
-        PORTD=seg[sec2];
-        RC6=0;
-        RC5=1;
-        _delay((unsigned long)((5)*(16000000/4000.0)));
-
+        s1=sec%10;
+        s2=sec/10;
+        m1=min%10;
+        m2=min/10;
         if(hour==1 || hour==13)
         {
-            PORTA=0x00;
-            RB2=1;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=1;
+            h2=0;
         }
-
         else if(hour==2 || hour==14)
         {
-
-            PORTA=0x00;
-            RB2=0;
-            RB3=1;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=2;
+            h2=0;
         }
-
         else if(hour==3 || hour==15)
         {
-
-            PORTA=0x00;
-            RB2=0;
-            RB3=0;
-            RB4=1;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=3;
+            h2=0;
         }
-
         else if(hour==4 || hour==16)
         {
-
-            PORTA=0x00;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=1;
-            RB6=0;
-            RB7=0;
-            RC1=0;
-
+            h1=4;
+            h2=0;
         }
-
         else if(hour==5 || hour==17)
         {
-
-
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=1;
-            RB7=0;
-            RC1=0;
+            h1=5;
+            h2=0;
         }
-
         else if(hour==6 || hour==18)
         {
-
-            PORTA=0x00;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=1;
-            RC1=0;
+           h1=6;
+           h2=0;
         }
-
         else if(hour==7 || hour==19)
         {
-
-            PORTA=0x20;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=7;
+            h2=0;
         }
-
         else if(hour==8 || hour==20)
         {
-            PORTA=0x00;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=1;
+            h1=8;
+            h2=0;
         }
-
         else if(hour==9 || hour==21)
         {
-            PORTA=0x08;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=9;
+            h2=0;
         }
-
         else if(hour==10 || hour==22)
         {
-            PORTA=0x04;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=0;
+            h2=1;
         }
-
         else if(hour==11 || hour==23)
         {
-            PORTA=0x02;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=1;
+            h2=1;
         }
-
         else if(hour==12 || hour==0)
         {
-            PORTA=0x01;
-            RB2=0;
-            RB3=0;
-            RB4=0;
-            RB5=0;
-            RB6=0;
-            RB7=0;
-            RC1=0;
+            h1=2;
+            h2=1;
         }
-
+        PORTD=seg[h2];
+        RB5=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB5=0;
+        PORTD=seg[h1];
+        RB4=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB4=0;
+        PORTD=seg[m2];
+        RB3=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB3=0;
+        PORTD=seg[m1];
+        RB2=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB2=0;
+        PORTD=seg[s2];
+        RB1=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB1=0;
+        PORTD=seg[s1];
+        RB0=1;
+        _delay((unsigned long)((dly)*(16000000/4000.0)));
+        RB0=0;
     }
     return 0;
 }

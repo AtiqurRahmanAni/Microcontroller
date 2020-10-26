@@ -13,33 +13,23 @@
 #pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
 #define _XTAL_FREQ 16000000
-#define RS RD2
-#define EN RD3
-#define D4 RD4
-#define D5 RD5
-#define D6 RD6
-#define D7 RD7
-#define s1 RC5
-#define s2 RC6
-#define TWELVE RA0
-#define ONE RB2
-#define TWO RB3
-#define THREE RB4
-#define FOUR RB5
-#define FIVE RB6
-#define SIX RB7
-#define SEVEN RA5
-#define EIGHT RC1
-#define NINE RA3
-#define TEN RA2
-#define ELEVEN RA1
+#define ss1 RB0
+#define ss2 RB1
+#define mm1 RB2
+#define mm2 RB3
+#define hh1 RB4
+#define hh2 RB5
+
+
 int sec = 05;
 int min = 55;
 int hour = 10;
 int date = 06;
 int month = 05;
 int year = 18;
-int sec1,sec2;
+
+int s1,s2,m1,m2,h1,h2,dly=2;;
+
 unsigned int seg[]={0X3F, //Hex value to display the number 0
                     0X06, //Hex value to display the number 1
                     0X5B, //Hex value to display the number 2
@@ -57,10 +47,7 @@ unsigned int seg[]={0X3F, //Hex value to display the number 0
 
 int main() 
 {
-    TRISA=0x00;
-    PORTA=0x00;
-    TRISC=0x00;
-    PORTC=0x00;
+    
     TRISB=0x00;
     PORTB=0x00;
     TRISD=0x00;
@@ -69,168 +56,94 @@ int main()
     while (1) 
     {
         Update_Current_Date_Time();
-        sec1=min%10;
-        sec2=min/10;
-        PORTD=seg[sec1];
-        s1=0;
-        s2=1;
-        __delay_ms(5);
-        PORTD=seg[sec2];
-        s2=0;
-        s1=1;
-        __delay_ms(5);
-        //one
+        s1=sec%10;
+        s2=sec/10;
+        m1=min%10;
+        m2=min/10;
         if(hour==1 || hour==13)
         {
-            PORTA=0x00;
-            ONE=1;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=1;
+            h2=0;
         }
-        //two
         else if(hour==2 || hour==14)
         {
-            
-            PORTA=0x00;
-            ONE=0;
-            TWO=1;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=2;
+            h2=0;
         }
-        //three
         else if(hour==3 || hour==15)
         {
-            
-            PORTA=0x00;
-            ONE=0;
-            TWO=0;
-            THREE=1;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=3;
+            h2=0;
         }
-        //four
         else if(hour==4 || hour==16)
         {
-            
-            PORTA=0x00;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=1;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
-            
+            h1=4;
+            h2=0;
         }
-        //five
         else if(hour==5 || hour==17)
         {
-            
-            //PORTA=0x00;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=1;
-            SIX=0;
-            EIGHT=0;
+            h1=5;
+            h2=0;
         }
-        //six
         else if(hour==6 || hour==18)
         {
-            
-            PORTA=0x00;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=1;
-            EIGHT=0;
+           h1=6;
+           h2=0;
         }
-        //seven
         else if(hour==7 || hour==19)
         {
-            
-            PORTA=0x20;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=7;
+            h2=0;
         }
-        //eight
         else if(hour==8 || hour==20)
         {
-            PORTA=0x00;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=1;
+            h1=8;
+            h2=0;
         }
-        //nine
         else if(hour==9 || hour==21)
         {
-            PORTA=0x08;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=9;
+            h2=0;
         }
-        //ten
         else if(hour==10 || hour==22)
         {
-            PORTA=0x04;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=0;
+            h2=1;
         }
-        //eleven
         else if(hour==11 || hour==23)
         {
-            PORTA=0x02;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=1;
+            h2=1;
         }
-        //twelve
         else if(hour==12 || hour==0)
         {
-            PORTA=0x01;
-            ONE=0;
-            TWO=0;
-            THREE=0;
-            FOUR=0;
-            FIVE=0;
-            SIX=0;
-            EIGHT=0;
+            h1=2;
+            h2=1;
         }
-        
+        PORTD=seg[h2];
+        hh2=1;
+        __delay_ms(dly);
+        hh2=0;
+        PORTD=seg[h1];
+        hh1=1;
+        __delay_ms(dly);
+        hh1=0;
+        PORTD=seg[m2];
+        mm2=1;
+        __delay_ms(dly);
+        mm2=0;
+        PORTD=seg[m1];
+        mm1=1;
+        __delay_ms(dly);
+        mm1=0;
+        PORTD=seg[s2];
+        ss2=1;
+        __delay_ms(dly);
+        ss2=0;
+        PORTD=seg[s1];
+        ss1=1;
+        __delay_ms(dly);
+        ss1=0;
     }
     return 0;
 }
